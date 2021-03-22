@@ -1,0 +1,11 @@
+.confetti{
+    background: url("../../assets/images/Confetti3_1600x.gif")
+    repeat-x center center fixed;
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    opacity: 0.2;
+    position:absolute;
+    top:0;
+    z-index: -1;
+}

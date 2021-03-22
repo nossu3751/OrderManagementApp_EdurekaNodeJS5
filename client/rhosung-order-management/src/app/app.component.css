@@ -1,0 +1,28 @@
+.my-overlay {
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 10000 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed !important;
+    background-color: #b8fcc37e !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    /* transition: visibility 1s, opacity 1s linear !important; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: wait !important;
+    animation: fadeOut 1500ms ease-out;
+    -webkit-animation: fadeOut 1500ms ease-out;
+    -moz-animation: fadeOut 1500ms ease-out;
+}
+.my-overlay i.fas.fa-spinner.fa-spin, .spinner-big {
+    font-size: 70px !important;
+    color: rgb(0, 95, 43);
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

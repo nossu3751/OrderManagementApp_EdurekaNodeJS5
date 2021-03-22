@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-var user=require('../models/user.model');
+var item=require('../models/item.model');
 
 var corsOption={
     origin:'*',
@@ -13,10 +13,10 @@ router.use((req,res,next)=>{
     next();
 })
 
-router.get('/:id', (req,res)=>{
+router.get('/:id',cors(corsOption), (req,res)=>{
     let id = req.params.id;
 
-    user.find(
+    item.find(
         {"_id":id},
         (err,data)=>{
             if(err){
@@ -28,8 +28,8 @@ router.get('/:id', (req,res)=>{
     )
 })
 //get
-router.get('/', (req,res)=>{
-    user.find((err,data)=>{
+router.get('/', cors(corsOption),(req,res)=>{
+    item.find((err,data)=>{
         if(err)
             throw err;
         else
@@ -38,40 +38,19 @@ router.get('/', (req,res)=>{
 })  
 
 router.post('/', cors(corsOption) ,(req,res)=>{
-    // user.create(req.body,(err,data)=>{
-    //     if(err) 
-    //         throw err;
-    //     else 
-    //         res.send(req.body);
-    // });
-    let query = req.body;
-    user.updateOne(
-        {
-            "name":query.name,
-            "email":query.email
-        },
-        {
-            "$set":query,
-            "date":Date.now()
-        },
-        {
-            "upsert":true
-        },
-        (err, data)=>{
-            if(err){
-                throw err;
-            }else{
-                res.send(query);
-            }
-        }
-    )
+    item.create(req.body,(err,data)=>{
+        if(err) 
+            throw err;
+        else 
+            res.send(req.body);
+    })
 })
 
 router.put('/', cors(corsOption), (req,res)=>{
     let query = req.body;
     console.log("updating",query);
     console.log(query._id);
-    user.updateOne(
+    item.updateOne(
         {
             "_id":query._id
         },
@@ -88,9 +67,9 @@ router.put('/', cors(corsOption), (req,res)=>{
     )
 })
 
-router.delete('/',cors(corsOption), (req,res)=>{
+router.delete('/', cors(corsOption),(req,res)=>{
     let query = req.body;
-    user.deleteOne(
+    item.deleteOne(
         {
             "_id":query._id
         },

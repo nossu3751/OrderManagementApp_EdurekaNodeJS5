@@ -11,8 +11,13 @@ app.use(express.json());
 
 const port = 8002;
 const UserRoutes = require('./routes/UserRouter');
+const ItemRoutes = require('./routes/ItemRouter');
+const OrderRoutes = require('./routes/OrderRouter');
 
-app.use('/api',UserRoutes);
+app.use('/item',ItemRoutes);
+app.use('/user',UserRoutes);
+app.use('/order',OrderRoutes);
+
 const connection = mongoose.connection;
 
 mongoose.connect("mongodb://localhost:27017/assignment5",{
