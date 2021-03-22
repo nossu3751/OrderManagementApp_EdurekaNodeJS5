@@ -15,6 +15,23 @@ export class UserService {
     return this.http.get(this.url);
   }
 
+  getUserById(id:string):Promise<any>{
+    return new Promise((resolve)=>{
+      this.getUsers().subscribe((data)=>{
+        let targetUser = data.find(
+          (u:any)=>(
+            u.id === id
+          )
+        );
+        if(targetUser === undefined){
+          resolve(null);
+        }else{
+          resolve(targetUser);
+        }
+      })
+    })
+  }
+
   getUser(user:any):Promise<any>{
     return new Promise((resolve)=>{
       this.getUsers().subscribe((data)=>{

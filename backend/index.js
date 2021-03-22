@@ -13,10 +13,12 @@ const port = 8002;
 const UserRoutes = require('./routes/UserRouter');
 const ItemRoutes = require('./routes/ItemRouter');
 const OrderRoutes = require('./routes/OrderRouter');
+const EmailRoutes = require('./routes/EmailRouter');
 
 app.use('/item',ItemRoutes);
 app.use('/user',UserRoutes);
 app.use('/order',OrderRoutes);
+app.use('/email', EmailRoutes);
 
 const connection = mongoose.connection;
 

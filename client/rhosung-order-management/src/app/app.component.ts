@@ -22,6 +22,17 @@ export class AppComponent {
       this.navigationInterceptor(event)
     })
   }
+
+
+
+  goHome(){
+    this.router.navigate(["/"])
+  }
+
+  goAdmin(){
+    this.router.navigate(["/admin"])
+  }
+
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
       this.showOverlay = true;

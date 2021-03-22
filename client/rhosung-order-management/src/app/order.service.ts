@@ -18,14 +18,14 @@ export class OrderService {
   }
 
   postOrder(user:any,item:any):Promise<any>{
-    let itemId = item._id;
+
     return new Promise((resolve)=>{
       this._userService.getUser(user).then((userData)=>{
         if(userData === undefined){
           this._userService.postUser(user).then((postedUser)=>{
             let order = {
-              userId:postedUser._id,
-              itemId:itemId
+              user:JSON.stringify(postedUser),
+              item:JSON.stringify(item)
             }
             this.http.post(this.url, order).subscribe((data)=>{
               resolve(data);
@@ -33,8 +33,8 @@ export class OrderService {
           })
         }else{
           let order = {
-            userId:userData._id,
-            itemId:itemId
+            user:JSON.stringify(userData),
+            item:JSON.stringify(item)
           };
           this.http.post(this.url, order).subscribe((data)=>{
             resolve(data);

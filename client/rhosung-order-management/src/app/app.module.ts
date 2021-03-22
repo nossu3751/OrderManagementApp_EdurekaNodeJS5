@@ -15,7 +15,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 const ROUTES: Routes = [
   {path:'', component:OrderFormComponent},
   {path:'success', component:OrderSuccessComponent},
-
+  {path:'admin', component:DashboardComponent}
 ]
 
 @NgModule({

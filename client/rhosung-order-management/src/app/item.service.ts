@@ -29,4 +29,22 @@ export class ItemService {
       })
     })
   }
+
+  getItemById(id:string):Promise<any>{
+    return new Promise((resolve)=>{
+      this.getItems().subscribe((data)=>{
+        let targetItem = data.find(
+          (i:any)=>(
+            i.id === id
+          )
+        );
+        if(targetItem === undefined){
+          resolve(null);
+        }else{
+          resolve(targetItem);
+        }
+      })
+    })
+  }
 }
+
